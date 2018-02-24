@@ -93,7 +93,6 @@ public class ControllerGrabObject : MonoBehaviour {
         {
             if (collidingObject)
             {
-                Debug.Log("yes");
                 GrabObject();
             }
         }
