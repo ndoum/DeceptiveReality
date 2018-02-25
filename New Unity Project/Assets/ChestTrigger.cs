@@ -1,34 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChestTrigger : MonoBehaviour
 {
+    public Text win;
+
+    public GameObject water;
 
     private GameObject collidingObject;
-    public IEnumerator OnTriggerEnter()
+
+    public void OnTriggerEnter(Collider other)
     {
-        //GoldScript goldScript = GetComponent<GoldScript>();
-        //GameObject.FindWithTag("key_gold").GetComponent<GoldScript>().delete();
+        SilverKeyScript key = other.GetComponent<SilverKeyScript>();
+
+        if (key != null) {
+            water.GetComponent<WaterTime>().ShrinkEvent();
+            Destroy(other.gameObject);
+
+            Explode();
+            Debug.Log("Silver Key is in");
+            win.enabled = true;
+            win.text = "You Win!";
+            win.color = Color.yellow;
 
 
-        collidingObject = GameObject.Find("key_silver");
-        collidingObject.layer = 12;
-        yield return new WaitForSeconds(2);
-        GameObject water = GameObject.Find("water");
-        water.GetComponent<WaterTime>().ShrinkEvent();
+        }
 
-
-        //Destroy(GameObject.Find("pPlane3"));
-        /*Issue was saying gold_key instead of key_gold*/
-
-        //GameObject.FindWithTag("key_gold").goldScript.delete();
-        //Edward's line of code
-        //GameObject.FindWithTag("gold_key").delete()
-        //henry
-        //GameObject.FindWithTag("gold_key").Destroy();
-        Explode();
-        Debug.Log("Silver key is in");
     }
     void Explode()
     {

@@ -1,23 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaterTime : MonoBehaviour {
     public bool WaterIsRising = false;
     private bool WaterIsShrinking = false;
-    private bool happened = false;
+    public Text lose;
+
     private void Start()
     {
-        transform.position = new Vector3(0, -1.2f, 0);
+        transform.position = new Vector3(0, -1.3f, 0);
     }
     public void KeyEvent()
     {
         WaterIsRising = true;
-        if (!happened)
-        {
-            transform.position = new Vector3(0, -.8f, 0);
-            happened = true;
-        }
+
     }
 
     public void ShrinkEvent()
@@ -36,12 +34,23 @@ public class WaterTime : MonoBehaviour {
 		if (WaterIsRising)
         {
             Vector3 current = transform.position;
-            transform.position = new Vector3(0, current.y+=0.005f*Time.deltaTime, 0);
+            transform.position = new Vector3(0, current.y+=0.01f*Time.deltaTime, 0);
         }
         else if (WaterIsShrinking)
         {
             Vector3 current = transform.position;
             transform.position = new Vector3(0, current.y -= 0.02f * Time.deltaTime, 0);
         }
+        if ( transform.position.y >= 0.36f)
+        {
+            lose.enabled = true;
+
+        }
+    }
+
+    public void IncreaseWater()
+    {
+        Vector3 current = transform.position;
+        transform.position = new Vector3(0, current.y += .30f, 0);
     }
 }

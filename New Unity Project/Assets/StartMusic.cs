@@ -6,20 +6,19 @@ public class StartMusic : MonoBehaviour {
     bool musicPlay = true;
     bool musicFirstToggle = true;
     bool musicSecondToggle = true;
-
+    /*
 	// Use this for initialization
 	void Start () {
         //Fetch AudioSource from GameObject
-        //musicInitialAudio = null;
-        //GetComponent<AudioSource>();
-        //musicSecondAudio = null;
-        //GetComponent<AudioSource>();
+        musicInitialAudio = null;
+        GetComponent<AudioSource>();
+        musicSecondAudio = GetComponent<AudioSource>();
         //Toggled to play at startup
         musicPlay = true;
 
         //Will this work?
         musicFirstToggle = true;
-	}
+	}*/
 	
 	// Update is called once per frame
 	void Update () {

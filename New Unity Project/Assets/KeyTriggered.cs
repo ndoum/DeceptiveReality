@@ -9,32 +9,28 @@ public class KeyTriggered : MonoBehaviour
 
     public GameObject water;
 
-    public GameObject silverKey;
+    public ControllerGrabObject controller1;
 
-    public GameObject silverKeySpawnpoint;
+    public ControllerGrabObject controller2;
 
     public bool transitionSong = false;
 
     public void OnTriggerEnter(Collider other)
     {
-        DeleteGold key = other.GetComponent<DeleteGold>();
+        GoldKeyScript key = other.GetComponent<GoldKeyScript>();
 
         if (key != null)
         {
             water.GetComponent<WaterTime>().KeyEvent();
-            Destroy(other.gameObject);
-            Explode();
-            silverKey.transform.position = silverKeySpawnpoint.transform.position;
 
-            Debug.Log("Key is in");
+            controller1.ReleaseObject();
+            controller2.ReleaseObject();
+            Destroy(other.gameObject);
+            
+            Debug.Log("Gold Key is in");
 
         }
 
-        // yield return new WaitForSeconds(2);
-
-        //GameObject.FindWithTag("key_gold").SetActive(false);
-        //Throws KeyGold right outta the map
-        //GameObject.FindWithTag("key_gold").transform.position = new Vector3(25.4f, 26.3f, 11);
 
     }
     void Explode()

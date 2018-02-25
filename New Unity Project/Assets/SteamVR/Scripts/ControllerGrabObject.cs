@@ -1,20 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ControllerGrabObject : MonoBehaviour {
 
     private SteamVR_TrackedObject trackedObj;
-    private GameObject collidingObject;
+    public GameObject collidingObject;
     private GameObject objectInHand;
+    public Text record;
+
+    //public bool triggerPressed=false;
 
     private SteamVR_Controller.Device Controller
     {
         get { return SteamVR_Controller.Input((int)trackedObj.index); }
     }
 
+
     void Awake()
     {
+        record.enabled = false;
         trackedObj = GetComponent<SteamVR_TrackedObject>();
     }
 
@@ -71,7 +77,7 @@ public class ControllerGrabObject : MonoBehaviour {
         return fx;
     }
 
-    private void ReleaseObject()
+    public void ReleaseObject()
     {
         // 1
         if (GetComponent<FixedJoint>())
@@ -83,6 +89,7 @@ public class ControllerGrabObject : MonoBehaviour {
             objectInHand.GetComponent<Rigidbody>().velocity = Controller.velocity;
             objectInHand.GetComponent<Rigidbody>().angularVelocity = Controller.angularVelocity;
         }
+
         // 4
         objectInHand = null;
     }
