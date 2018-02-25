@@ -15,7 +15,7 @@ public class KeyTriggered : MonoBehaviour {
          water.GetComponent<WaterTime>().KeyEvent();
          GameObject.FindWithTag("key_gold").SetActive(false);
          Explode();
-        GameObject.FindWithTag("key_silver").SetActive(true);
+        GameObject.FindWithTag("key_silver").transform.position = new Vector3(25.4f, 26.3f, 11);
 
         Debug.Log("Key is in"); 
     }

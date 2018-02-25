@@ -9,13 +9,13 @@ public class ChestTrigger : MonoBehaviour
     public IEnumerator OnTriggerEnter()
     {
 
-            collidingObject = GameObject.Find("key_silver");
-            GameObject.FindWithTag("key_silver").layer = 12;
-            yield return new WaitForSeconds(2);
-            GameObject water = GameObject.Find("water");
-            water.GetComponent<WaterTime>().ShrinkEvent();
-            GameObject.Find("key_silver").SetActive(false);
-            Explode();
+           collidingObject = GameObject.Find("key_silver");
+           collidingObject.layer = 12;
+           yield return new WaitForSeconds(2);
+           GameObject water = GameObject.Find("water");
+           water.GetComponent<WaterTime>().ShrinkEvent();
+           GameObject.FindWithTag("gold_key").delete();
+           Explode();
         Debug.Log("Silver key is in");
     }
     void Explode()
