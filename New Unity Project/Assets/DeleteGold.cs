@@ -6,7 +6,7 @@ public class DeleteGold : MonoBehaviour {
 
     void delete()
     {
-        this.SetActive(false);
+        //this.SetActive(false);
     }
 	
 	// Update is called once per frame
