@@ -5,21 +5,25 @@ using UnityEngine;
 public class KeyTriggered : MonoBehaviour {
 
     private GameObject collidingObject;
-
-    public IEnumerator OnTriggerEnter()
+    public IEnumerator OnTriggerEnter( Collider col)
     {
-        collidingObject = GameObject.Find("key_gold");
-        GameObject.FindWithTag("key_gold").layer = 10;
-        yield return new WaitForSeconds(2);
-        GameObject.FindWithTag("key_gold").SetActive(false);
-        Explode();
-        Debug.Log("Key is in");
+
+         collidingObject = GameObject.FindWithTag("key_gold");
+          GameObject.FindWithTag("key_gold").layer = 10;
+         yield return new WaitForSeconds(2);
+         GameObject water = GameObject.FindWithTag("water");
+         water.GetComponent<WaterTime>().KeyEvent();
+         GameObject.FindWithTag("key_gold").SetActive(false);
+         Explode();
+        GameObject.FindWithTag("key_silver").SetActive(true);
+
+        Debug.Log("Key is in"); 
     }
     void Explode()
     {
         var exp = GetComponent<ParticleSystem>();
         exp.Play();
-        Destroy(gameObject);
+        Destroy(exp);
     }
     
     // Update is called once per frame

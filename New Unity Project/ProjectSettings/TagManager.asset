@@ -6,6 +6,8 @@ TagManager:
   tags:
   - key_gold
   - Fire
+  - water
+  - key_silver
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Trigger
   - wall
   - wallTrigger
-  - 
+  - Chest
   - 
   - 
   - 
